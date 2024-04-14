@@ -19,11 +19,7 @@ class MealsApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        body: Placeholder(
-          child: Text('TODO'), // TODO: Create main page of the app.
-        ),
-      ),
+      home: const CategoriesScreen(),
     );
   }
 }

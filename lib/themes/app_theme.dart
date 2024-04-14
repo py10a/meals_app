@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   AppTheme._();
@@ -16,10 +17,7 @@ class AppTheme {
       onPrimary: Colors.white,
       secondary: Colors.blueAccent,
     ),
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.black),
-      bodyMedium: TextStyle(color: Colors.black),
-    ),
+    textTheme: GoogleFonts.latoTextTheme(),
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -35,9 +33,6 @@ class AppTheme {
       onPrimary: Colors.black,
       secondary: Colors.blueAccent,
     ),
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.white),
-      bodyMedium: TextStyle(color: Colors.white),
-    ),
+    textTheme: GoogleFonts.latoTextTheme(),
   );
 }
