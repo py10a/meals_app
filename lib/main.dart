@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/screens/categories_screen.dart';
+import 'package:meals_app/screens/tabs_screen.dart';
 import 'package:meals_app/themes/app_theme.dart';
 
 // Entry-point method of the app.
@@ -20,7 +20,7 @@ class MealsApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: const CategoriesScreen(),
+      home: const TabsScreen(),
     );
   }
 }
