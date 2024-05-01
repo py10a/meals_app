@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals_app/models/meal.dart';
+import 'package:meals_app/providers/favourites_providers.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../models/meal.dart';
-
-class MealDetailsScreen extends StatelessWidget {
+class MealDetailsScreen extends ConsumerWidget {
   const MealDetailsScreen({
     super.key,
     required this.meal,
@@ -12,14 +13,30 @@ class MealDetailsScreen extends StatelessWidget {
   final Meal meal;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favourites = ref.watch(favouritesProvider);
+    final isFavoriteMeal = favourites.contains(meal);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
         actions: [
           IconButton(
-            onPressed: () {}, // TODO: Implement favourites provider.
-            icon: const Icon(Icons.star_border_outlined),
+            onPressed: () {
+              final isAddedToFavourites = ref
+                  .read(favouritesProvider.notifier)
+                  .toggleMealFavouriteStatus(meal);
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(isAddedToFavourites
+                      ? 'Meal is favourite.'
+                      : 'Meal is no longer favourite.'),
+                ),
+              );
+            },
+            icon:
+                Icon(isFavoriteMeal ? Icons.star : Icons.star_border_outlined),
           ),
         ],
       ),
