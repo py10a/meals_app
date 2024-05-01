@@ -6,11 +6,16 @@ import 'package:meals_app/screens/meals_screen.dart';
 import 'package:meals_app/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({
+    super.key,
+    required this.meals,
+  });
+
+  final List<Meal> meals;
 
   // Pass filtered meals to child class (i.e. CategoryGridItem)
   void _onSelectCategory(BuildContext context, Category category) {
-    List<Meal> filtered = dummyMeals
+    List<Meal> filtered = meals
         .where((element) => element.categories.contains(category.id))
         .toList();
 
@@ -29,9 +34,6 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pick your meal category'),
-      ),
       body: GridView(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
