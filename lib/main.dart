@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/screens/tabs_screen.dart';
 import 'package:meals_app/themes/app_theme.dart';
 
 // Entry-point method of the app.
@@ -19,11 +20,7 @@ class MealsApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        body: Placeholder(
-          child: Text('TODO'), // TODO: Create main page of the app.
-        ),
-      ),
+      home: const TabsScreen(),
     );
   }
 }
