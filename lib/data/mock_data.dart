@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/models/category.dart';
 import 'package:meals_app/models/meal.dart';
 
+/// A constant list of available categories for meals.
+/// Each category has a:
+/// * unique [id]
+/// * [title]
+/// * [color].
 const availableCategories = [
   Category(
     id: 'c1',
@@ -55,6 +60,20 @@ const availableCategories = [
   ),
 ];
 
+/// A constant list of dummy meals for testing and development purposes.
+///
+/// Each meal has a:
+///
+/// * unique id
+/// * a list of categories it belongs to
+/// * a title
+/// * an image URL
+/// * a list of ingredients
+/// * a list of steps to prepare it
+/// * a duration
+/// * a complexity level
+/// * an affordability level
+/// * and flags for various dietary restrictions (vegan, non-gluten, etc.)
 const dummyMeals = [
   Meal(
     id: 'm1',
