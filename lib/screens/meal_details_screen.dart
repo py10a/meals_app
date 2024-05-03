@@ -31,7 +31,8 @@ class MealDetailsScreen extends ConsumerWidget {
               duration: const Duration(milliseconds: 600),
               switchInCurve: Curves.easeInOutBack,
               switchOutCurve: Curves.easeInOutBack,
-              reverseDuration: const Duration(milliseconds: 0),
+              reverseDuration: Duration.zero,
+              // const Duration(milliseconds: 0),
               transitionBuilder: (child, animation) {
                 return RotationTransition(
                   turns: Tween(begin: 0.6, end: 1.0).animate(animation),
