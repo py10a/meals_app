@@ -4,8 +4,6 @@ import 'package:meals_app/screens/meal_details_screen.dart';
 import 'package:meals_app/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../models/meal.dart';
-
 class MealItem extends StatelessWidget {
   const MealItem({
     super.key,

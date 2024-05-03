@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals_app/helpers/snackbar_helper.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/providers/favourites_provider.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -23,17 +24,8 @@ class MealDetailsScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () {
-              final isAddedToFavourites = ref
-                  .read(favouritesProvider.notifier)
-                  .toggleMealFavouriteStatus(meal);
-              ScaffoldMessenger.of(context).clearSnackBars();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(isAddedToFavourites
-                      ? 'Meal is favourite.'
-                      : 'Meal is no longer favourite.'),
-                ),
-              );
+              FavoritesAddedSnackbar(context: context, ref: ref, meal: meal)
+                  .showSnackbar();
             },
             icon: AnimatedSwitcher(
               duration: const Duration(milliseconds: 600),
