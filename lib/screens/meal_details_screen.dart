@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals_app/helpers/snackbar_helper.dart';
+import 'package:meals_app/models/meal.dart';
+import 'package:meals_app/providers/favourites_provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../models/meal.dart';
-
-class MealDetailsScreen extends StatelessWidget {
+class MealDetailsScreen extends ConsumerWidget {
   const MealDetailsScreen({
     super.key,
     required this.meal,
@@ -12,18 +14,51 @@ class MealDetailsScreen extends StatelessWidget {
   final Meal meal;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favourites = ref.watch(favouritesProvider);
+    final isFavoriteMeal = favourites.contains(meal);
+
     return Scaffold(
-      appBar: AppBar(title: Text(meal.title)),
+      appBar: AppBar(
+        title: Text(meal.title),
+        actions: [
+          IconButton(
+            onPressed: () {
+              FavoritesAddedSnackbar(context: context, ref: ref, meal: meal)
+                  .showSnackbar();
+            },
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 600),
+              switchInCurve: Curves.easeInOutBack,
+              switchOutCurve: Curves.easeInOutBack,
+              reverseDuration: Duration.zero,
+              // const Duration(milliseconds: 0),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: Tween(begin: 0.6, end: 1.0).animate(animation),
+                  child: child,
+                );
+              },
+              child: Icon(
+                isFavoriteMeal ? Icons.star : Icons.star_border_outlined,
+                key: ValueKey(isFavoriteMeal),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         children: [
-          FadeInImage(
-            placeholder: MemoryImage(kTransparentImage),
-            image: NetworkImage(meal.imageUrl),
-            fit: BoxFit.cover,
-            height: 300,
-            width: double.infinity,
+          Hero(
+            tag: meal.id,
+            child: FadeInImage(
+              placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(meal.imageUrl),
+              fit: BoxFit.cover,
+              height: 300,
+              width: double.infinity,
+            ),
           ),
           const SizedBox(height: 28.0),
           Text(meal.title,
