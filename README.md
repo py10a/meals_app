@@ -3,6 +3,9 @@
 ## Overview
 Meals App is a mobile application designed to provide culinary inspiration to cooking enthusiasts worldwide. The app offers a rich database of recipes from various cuisines, enabling users to explore new flavors and improve their cooking skills.
 
+![image](https://github.com/user-attachments/assets/d88727e7-2462-4058-8158-8ec456d07b82)
+The workflow of the mobile app.
+
 ## Main Objectives
 - **Provide Diverse Recipes:** A comprehensive database of recipes from various world cuisines.
 - **Step-by-Step Instructions:** Detailed, illustrated instructions for each recipe.
